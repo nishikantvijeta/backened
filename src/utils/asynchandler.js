@@ -1,8 +1,10 @@
-import { Promise } from "mongoose"
+//import { Promise } from "mongoose"
+// import mongoose from "mongoose";
+// const { Promise } = mongoose;
 
-const asyncHandler=(rquestHandler)=>{
-    (req,res,next)=>{
-        Promise.resolve(requestHandler(req,res,next)).catch((err)=>next(err))
+const asyncHandler=(requestHandler)=>{
+    return (req,res,next)=>{
+        Promise.resolve(requestHandler(req,res,next)).catch(next)
     }
 }
 export{asyncHandler}
